@@ -1,0 +1,89 @@
+Terminology
+
+Add - Save changes to a branch, will not be in a push unless committed
+
+Commit - The saved changes to a branch that will be pushed
+
+Rebase - Pick and choose which commits you will make in a push
+* Common when you work with others and you don't want to roll over their code
+
+Push - A push is when you take code from your branch and you push it to a remote branch.
+
+Pull Request - A request to accept a push into the master branch
+
+***
+
+Initialization
+
+1) Our github is already created: https://github.com/AaronHSolo/beginning_tutorials
+
+2) The first thing we'll need to do is create the SSH key so that when you push in the future, it will show up as you.
+
+3) Now that the key is created, you will want to create a clean folder to house your project.
+* Name it beginning_tutorials
+
+3b) Make sure you go into this folder!
+
+4) Git needs an environment to with. To set it up, use: git init
+
+5) Next, you need to add the remote branch to the folder so that you can authenticate to the repo
+Command: git remote add origin https://github.com/AaronHSolo/beginning_tutorials.git
+
+5b) Alright... so pay attention to HTTPS. SSH and HTTPS aren't compatible. Luckily for us, git has an alternate way:
+Command:  git remote set-url origin git@github.com:AaronHSolo/beginning_tutorials.git
+* This is what allows us to use our SSH key to push commits
+
+6) But you don't see any files, do you? Let's pull and see what happens...
+
+6b) ... What? It failed? Github's authenticity isn't recognized? Github, owned by microsoft? Why is this? Not to worry.
+
+6c) Grab the public key so that we can check github:
+ECDSA key fingerprint is SHA256:p2QAMXNIC1TJYWeIOttrVc98/R1BUFWu3/LiyKgUfQM
+
+6d) First, let's make sure our connection to github matches the expected fingerprint
+Command: ssh-keyscan -t ecdsa github.com 2>&1 |ssh-keygen -lf -
+
+6e) Alright. That thankfully checks out. p2Q...fQM is on both. Let's add github (this exact public key) to our list of known hosts.
+Command ssh -T git@github.com
+* Before typing in 'yes', ensure that the two fingerprints still match!
+
+7) Create your first branch!
+
+***
+
+1) Check which branch you are in. If on "main", checkout your new branch
+
+2) Copy your files over to the branch
+
+3) Once the files are on your git branch, check to see if git notices the change
+Command: git status
+
+4) You should see red. You will need to add them. You can do this via the git add command.
+Command: git add <filename>
+* Rarely will you add that many new files. If you do, you can use `git add .`
+
+5) Check git status to see if the text turns green. If so, continue.
+
+6) Git add simply adds the most recent changes to your current branch. To add them to the main branch, you need to commit them.
+Command: git commit -m <"description"> <filename>
+* Added files that are commited are what is passed to the main branch.
+
+7) Once you commit, you can push
+Command: git push
+* For the first time you create a branch, since it isn't tracking, you will need to set the online version of the branch up. Run the following command:
+git push --set-upstream origin <branch name>
+
+8) Now you have a URL you can use to create a PULL REQUEST. A pull request is when you want to add your changes from your branch to the main one. This is the last step you do. The maintainer of the project will look over your commits and decide if they want to add them or not. If they do, then they will.
+
+9) If the maintainer likes it, they will merge the branches together and you've updated the main branch. Congrats!
+
+Bonus!) If you are working with many people, sometimes you will encounter conflicts. As this is a low volume branch, you won't do so here. But let's see what this looks like here:
+Command: git rebase -i
+* You will need to coordinate with peers a lot of the times. Honestly, rebasing can be a bit of a headache, and won't be fully covered here. 
+
+
+
+ 
+
+
+

@@ -1,0 +1,42 @@
+Git use
+
+1) git branch
+* See your branches
+
+2) git checkout
+* This will allow you to checkout a branch... of course you need to specify one!
+
+3) git checkout master
+* Let's checkout the master. You will rarely touch your personal master. You use it to obtain the latest code
+
+4) git pull
+* This will pull the current, committed code to your personal master branch. Your personal master is already tethered to the one online, and is the way you base yourself on the latest project
+
+5) git branch ahs_develop master
+* This will create a new branch, ahs_develop, based on the code in your master. This does not put you into that branch. All you did was create it.
+
+6) git branch
+* See which branch you are at. You should still be at master
+
+7) git checkout ahs_develop
+* Now you can make changes
+
+*** Branch cleanup, post pull ***
+
+8a) git branch -D ahs_develop
+* If you make infrequent changes, it is easiest to delete the branch and create a new one. Sometimes code conflicts can creep up when you update an old branch. Use the -D parameter to remove the branch here and on the remote repo.
+
+8b) git merge master
+* If you make frequent changes, you can just merge your branch to the master. This sets the local code to the latest code from the online master, and you can go right ahead and start making your changes! The only caveat is to make your master is up-to-date! Git checkout the master and pull the latest code before trying to merge your development branch to the master.
+
+9) git reset --hard HEAD
+* If you are like me, there are times where you work off the master branch instead of your local branch. The good news is that this is not the end. The bad news is that sometimes it's easiest to re-write your code. Git reset --hard will ensure that you if made changes, you can reset your master branch to match the online one. Ideally, there should be a stop between pushing your local master changes to the online one... but enterprises sometimes don't do this :(. Talk to your coworkers immediately if you committed anything to the online master directly, as they might have pulled the changes in already.
+
+10a) git stash
+* Instead of trying to push changes, you may end up catching yourself before you add them to tracking. In that case, good news! Save your work and use git stash so that the code can be moved to a fresh branch.
+
+10b) git checkout ahs_develop
+* Switch to your branch
+
+10c) git stash apply
+* Now your code is moved from the master and is only on the fresh branch. Continue coding!

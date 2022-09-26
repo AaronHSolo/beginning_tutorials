@@ -1,0 +1,20 @@
+Main Reference:
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+1) Create your ssh key
+ssh-keygen -t rsa -b 4096 -C "bocephusdeane@gmail.com"
+    You will need to add your own email
+
+1b) Github recommends you use this, but not all platforms support this:
+    ssh-keygen -t ed25519 -C "your_email@example.com"
+    The -t parameter (ed25519) is a cipher. The RSA is available for all platforms. The Elliptical Diffie-Hellman curve is another type of cipher. The RSA is fine for many, ed25519 is probably even more future-proof, as far as we currently know.
+
+ssh-keygen creates a public/private key pair.
+    public key is something you can share with others to let them know it's you
+    private key is something for you and you only. You can use it to log on to a system. Best Practice is to always use a password with it so that people just don't take the file and can impersonate you.
+
+2) Go to Settings > Deploy Keys
+2b) Click "Deploy key"
+2c) Name it, copy the PUBLIC key text to "key", and then check the "Allow Write Access"
+    I expect you to be able to make changes to this repo.
+     
